@@ -15,10 +15,17 @@ const display = document.querySelector('.display')
 
 let previousValue
 let selectedOperation
+let newValue = false
 
 const addNumberToDisplay = event => {
   if (display.innerHTML[0] === '0' && !display.innerHTML.includes('.'))
     display.innerHTML = ''
+
+  if (selectedOperation && previousValue === +display.innerHTML && !newValue) {
+    display.innerHTML = ''
+    newValue = true
+  }
+  
   display.innerHTML = display.innerHTML + event.target.innerText
 }
 
@@ -26,7 +33,6 @@ const handleOperation = operation => {
   if (selectedOperation === operation) return
   selectedOperation = operation
   previousValue = +display.innerHTML
-  display.innerHTML = ''
 }
 
 const handleEquals = () => {
@@ -45,6 +51,7 @@ const handleEquals = () => {
 
   previousValue = ''
   selectedOperation = ''
+  newValue = false
 }
 
 const handleAddDot = () => {
