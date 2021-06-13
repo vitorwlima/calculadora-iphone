@@ -35,7 +35,8 @@ const addNumberToDisplay = event => {
 }
 
 const setActiveOperation = () => {
-  console.log('oi')
+  btnOperations.forEach(btn => btn.classList.remove('btn-active'))
+
   if (selectedOperation === 'addition') btnAdd.classList.add('btn-active')
 
   if (selectedOperation === 'minus') btnMinus.classList.add('btn-active')
@@ -44,9 +45,6 @@ const setActiveOperation = () => {
     btnMultiplication.classList.add('btn-active')
 
   if (selectedOperation === 'division') btnDivision.classList.add('btn-active')
-
-  if (!selectedOperation)
-    btnOperations.forEach(btn => btn.classList.remove('btn-active'))
 }
 
 const handleOperation = operation => {
