@@ -25,8 +25,9 @@ const addNumberToDisplay = event => {
     display.innerHTML = ''
     newValue = true
   }
-  
-  display.innerHTML = display.innerHTML + event.target.innerText
+
+  if (display.innerHTML.length < 8 || display.innerHTML.length < 9 && display.innerHTML.includes('.'))
+    display.innerHTML = display.innerHTML + event.target.innerText
 }
 
 const handleOperation = operation => {
@@ -48,6 +49,12 @@ const handleEquals = () => {
 
   if (selectedOperation === 'division')
     display.innerHTML = previousValue / currentValue
+
+  if (display.innerHTML.length > 8 && display.innerHTML.includes('.'))
+    display.innerHTML = display.innerHTML.slice(0, 9)
+
+  if (display.innerHTML.length > 8 && !display.innerHTML.includes('.'))
+    display.innerHTML = display.innerHTML.slice(0, 8)
 
   previousValue = ''
   selectedOperation = ''
