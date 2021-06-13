@@ -55,8 +55,13 @@ body {
   color: white;
   font-family: 'Nunito', sans-serif;
   font-weight: bold;
-  transition: transform 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
+}
+
+.btn.btn-operation.btn-active {
+  color: #f19a38;
+  background-color: white;
 }
 
 .btn-grid .btn:hover {

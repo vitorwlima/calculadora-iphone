@@ -1,5 +1,6 @@
 const btnsNumber = document.querySelectorAll('.btn-number')
 
+const btnOperations = document.querySelectorAll('.btn-operation')
 const btnDivision = document.querySelector('.btn-division')
 const btnMultiplication = document.querySelector('.btn-multiplication')
 const btnMinus = document.querySelector('.btn-minus')
@@ -26,14 +27,33 @@ const addNumberToDisplay = event => {
     newValue = true
   }
 
-  if (display.innerHTML.length < 8 || display.innerHTML.length < 9 && display.innerHTML.includes('.'))
+  if (
+    display.innerHTML.length < 8 ||
+    (display.innerHTML.length < 9 && display.innerHTML.includes('.'))
+  )
     display.innerHTML = display.innerHTML + event.target.innerText
+}
+
+const setActiveOperation = () => {
+  console.log('oi')
+  if (selectedOperation === 'addition') btnAdd.classList.add('btn-active')
+
+  if (selectedOperation === 'minus') btnMinus.classList.add('btn-active')
+
+  if (selectedOperation === 'multiplication')
+    btnMultiplication.classList.add('btn-active')
+
+  if (selectedOperation === 'division') btnDivision.classList.add('btn-active')
+
+  if (!selectedOperation)
+    btnOperations.forEach(btn => btn.classList.remove('btn-active'))
 }
 
 const handleOperation = operation => {
   if (selectedOperation === operation) return
   selectedOperation = operation
   previousValue = +display.innerHTML
+  setActiveOperation()
 }
 
 const handleEquals = () => {
@@ -59,6 +79,7 @@ const handleEquals = () => {
   previousValue = ''
   selectedOperation = ''
   newValue = false
+  setActiveOperation()
 }
 
 const handleAddDot = () => {
@@ -69,6 +90,7 @@ const handleAddDot = () => {
 const handleClear = () => {
   display.innerHTML = '0'
   selectedOperation = ''
+  setActiveOperation()
 }
 
 const handleSwitchSignal = () => {
