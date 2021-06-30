@@ -48,7 +48,9 @@ const setActiveOperation = () => {
 }
 
 const handleOperation = operation => {
-  if (selectedOperation === operation) return
+  if (selectedOperation === operation)
+    operation = ''
+
   selectedOperation = operation
   previousValue = +display.innerHTML
   setActiveOperation()
